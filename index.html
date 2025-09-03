@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Linda, Enfermera!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 2s ease-in;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        h1 {
+            color: #ff6b6b;
+        }
+        p {
+            font-size: 1.2em;
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #ff8787;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            transform: rotate(45deg);
+            animation: float 5s infinite;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>¡Eres increíble mi Ary!</h1>
+        <p id="message">No te rindas, cada intento te hace más fuerte. 💪 ¡Tú puedes con todo!</p>
+        <button onclick="changeMessage()">Descubre Otra ♥️ </button>
+    </div>
+
+    <script>
+        const messages = [
+            "¡Eres una Mujer increíble y sé que lo vas a lograr!",
+            "Cada paso que das te acerca más a tu meta. ¡Sigue adelante!",
+            "Tu Ingeniero siempre estará presente para verte Feliz. ¡Ánimo!",
+            "Tú tienes el poder de superar cualquier reto. ¡Confía en ti!",
+            "Eres más fuerte de lo que crees. ¡El próximo intento será el bueno!",
+            "Eres la mujer mas hermosa ante mis ojos"
+        ];
+
+        function changeMessage() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            document.getElementById('message').textContent = messages[randomIndex];
+        }
+
+        // Crear corazones animados
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 1000); // Crear un corazón cada segundo
+    </script>
+</body>
+</html>
